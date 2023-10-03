@@ -1,0 +1,7 @@
+Django==4.1
+psycopg2==2.9.6
+wagtail==5.0
+boto3==1.28
+django-storages==1.13
+djangorestframework==3.14
+django-debug-toolbar==4.1

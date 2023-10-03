@@ -1,0 +1,10 @@
+{% load i18n wagtailcore_tags %}
+
+
+<div class="grid-x grid-margin-x">
+  <div class="small-12 cell">
+{% autoescape off %}
+    {{ page.body }}
+{% endautoescape %}
+  </div>
+</div>
