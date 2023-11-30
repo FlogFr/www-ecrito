@@ -10,6 +10,10 @@ Django API on /api/
 
 Copy production.py from configmap but do not include it in Git.
 
+## Develop
+
+python manage.py runserver
+
 ## Collect Static to S3
 
 DJANGO_SETTINGS_MODULE='ecrito.settings.production' python manage.py collectstatic --no-input --clear
