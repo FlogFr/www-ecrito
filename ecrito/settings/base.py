@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "corsheaders",
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -58,8 +59,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  'https://ecrito.fr',
+  'https://ecrito.s3.fr-par.scw.cloud',
+)
 
 ROOT_URLCONF = "ecrito.urls"
 
