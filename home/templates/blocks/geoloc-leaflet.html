@@ -1,0 +1,24 @@
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6" id="map" style="height: 400px;" >
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">{{ block.value.title }}</h1>
+        <p class="lead">{{ block.value.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" >
+  var map = L.map('map').setView([{{ block.value.lat }}, {{ block.value.lon }}], 9);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18
+    }).addTo(map);
+  var popup = L.popup()
+      .setLatLng([{{ block.value.lat }}, {{ block.value.lon }}])
+    .setContent("{{ block.value.title }}")
+    .openOn(map);
+</script>

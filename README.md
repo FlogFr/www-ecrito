@@ -14,6 +14,16 @@ Copy production.py from configmap but do not include it in Git.
 
 python manage.py runserver
 
+## Settings
+
+ecrito/settings/base.py
+ecrito/settings/dev.py
+ecrito/settings/production.py
+
+## Build Design
+
+sassc ecrito/static/scss/app.scss > ecrito/static/css/ecritostyle.css
+
 ## Collect Static to S3
 
 DJANGO_SETTINGS_MODULE='ecrito.settings.production' python manage.py collectstatic --no-input --clear

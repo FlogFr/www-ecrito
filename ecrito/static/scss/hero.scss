@@ -1,0 +1,4 @@
+// Custom Hero Background
+.container-hero {
+  background-image: if($enable-gradients, linear-gradient(180deg, rgba($tertiary, .01), rgba($secondary, .6)), null);
+}

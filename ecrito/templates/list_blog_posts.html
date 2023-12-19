@@ -1,0 +1,11 @@
+{% load menutags %}
+
+{% with rootpage=self.get_root %}
+<ul>
+  {% for homepage in rootpage.get_children %}
+  {% for blogpost in homepage|get_children_menu_live %}
+  <li><a href="{{ blogpost.url }}">{{ blogpost.title }}</a></li>
+  {% endfor %}
+  {% endfor %}
+</ul>
+{% endwith %}

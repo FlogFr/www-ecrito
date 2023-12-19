@@ -1,0 +1,79 @@
+{% load i18n wagtailcore_tags %}
+
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  {% if block.value.herotype == 'ce' %}
+  <!-- Centered Background -->
+  <div class="bg-image"
+     style="background-image: url('{{ block.value.image.file.url }}');
+            height: 100vh">
+    <h1 class="display-5 fw-bold">{{ block.value.title }}</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">{{ block.value.description }}</p>
+    </div>
+  </div>
+  {% elif block.value.herotype == 'cs' %}
+  <!-- Centered Screenshot -->
+  <h1 class="display-4 fw-bold">{{ block.value.title }}</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">{{ block.value.description }}</p>
+  </div>
+  <div class="overflow-hidden" style="max-height: 25rem;">
+    <div class="container px-5">
+      <img src="{{ block.value.image.file.url }}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="{{ block.value.image.file.title }}" loading="lazy" />
+    </div>
+  </div>
+  <!-- Responsive Left Align -->
+  {% elif block.value.herotype == 'rla' %}
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ block.value.image.file.url }}" class="d-block mx-lg-auto img-fluid" alt="{{ block.value.image.file.title }}" loading="lazy" width="700" height="500">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">{{ block.value.title }}</h1>
+        <p class="lead">{{ block.value.description }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- Responsive Right Align -->
+  {% elif block.value.herotype == 'rra' %}
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">{{ block.value.title }}</h1>
+        <p class="lead">{{ block.value.description }}</p>
+      </div>
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ block.value.image.file.url }}" class="d-block mx-lg-auto img-fluid" alt="{{ block.value.image.file.title }}" loading="lazy" width="700" height="500">
+      </div>
+    </div>
+  </div>
+  <!-- Vertically Left Centered -->
+  {% elif block.value.herotype == 'vlc' %}
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">{{ block.value.title }}</h1>
+        <p class="col-lg-10 fs-4">{{ block.value.description }}</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <img src="{{ block.value.image.file.url }}" class="d-block mx-lg-auto img-fluid" alt="{{ block.value.image.file.title }}" loading="lazy" width="700" height="500">
+      </div>
+    </div>
+  </div>
+  <!-- Vertically Right Centered -->
+  {% elif block.value.herotype == 'vrc' %}
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-md-10 mx-auto col-lg-5">
+        <img src="{{ block.value.image.file.url }}" class="d-block mx-lg-auto img-fluid" alt="{{ block.value.image.file.title }}" loading="lazy" width="700" height="500">
+      </div>
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">{{ block.value.title }}</h1>
+        <p class="col-lg-10 fs-4">{{ block.value.description }}</p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+

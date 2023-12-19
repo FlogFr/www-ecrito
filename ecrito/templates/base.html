@@ -24,8 +24,8 @@
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/ecrito.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/foundation.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ecritostyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/leaflet.css' %}">
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -41,12 +41,9 @@
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/vendor/jquery.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/vendor/what-input.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/vendor/foundation.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/leaflet.js' %}" crossorigin="" ></script>
 
         {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
         {% endblock %}
     </body>
 </html>
