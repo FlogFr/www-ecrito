@@ -15,10 +15,10 @@ Delete the line below if you're just getting started and want to remove the welc
 
 <div class="container text-center">
   <div class="row">
-    <div class="col">
+    <div class="col-md-6">
       {% include "list_blog_posts.html" %}
     </div>
-    <div id="map" class="col" style="height: 512px;" >
+    <div id="map" class="col-md-6 card card-body" style="height: 400px;" >
     </div>
   </div>
 </div>
@@ -34,7 +34,8 @@ Delete the line below if you're just getting started and want to remove the welc
 
   {% for blogpost in self.get_posts %}
   var marker{{forloop.counter}} = L.marker([{{ blogpost|get_lat }}, {{ blogpost|get_lon}}]).addTo(map);
-  marker{{forloop.counter}}.bindPopup("<a href=\"{{ blogpost.url }}\"><b>{{blogpost.title}}</b></a>").openPopup();
+  marker{{forloop.counter}}.bindPopup("<a href=\"{{ blogpost.url }}\"><b>{{blogpost.title}}</b></a>", {closeOnClick: false, autoClose: false}).openPopup();
+
   {% endfor %}
 
 </script>

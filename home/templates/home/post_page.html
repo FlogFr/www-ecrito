@@ -15,10 +15,14 @@ Delete the line below if you're just getting started and want to remove the welc
 
 <div class="container text-center">
   <div class="row">
-    <div class="col">
-      Super Description
+    <div class="col-md-6">
+      <div class="list-group">
+        <a href="{{ blogpost.url }}" class="list-group-item list-group-item-action active" aria-current="true">
+          {{ self.title }}
+        </a>
+      </div>
     </div>
-    <div id="map" class="col" style="height: 512px;" >
+    <div id="map" class="col-md-6 card card-body" style="height: 400px;" >
     </div>
   </div>
 
@@ -57,5 +61,8 @@ Delete the line below if you're just getting started and want to remove the welc
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
+
+
+  var marker = L.marker([{{ self|get_lat }}, {{ self|get_lon}}]).addTo(map);
 </script>
 {% endblock %}
