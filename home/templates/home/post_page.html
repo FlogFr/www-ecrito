@@ -14,21 +14,12 @@ Delete the line below if you're just getting started and want to remove the welc
 {% block content %}
 
 <div class="container text-center">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="list-group">
-        <a href="{{ blogpost.url }}" class="list-group-item list-group-item-action active" aria-current="true">
-          {{ self.title }}
-        </a>
-      </div>
+  <div class="row card mt-4">
+    <div class="card-header">
+      <h3>{{ self.title }}</h3>
     </div>
-    <div id="map" class="col-md-6 card card-body" style="height: 400px;" >
-    </div>
-  </div>
-
+    <div class="card-body">
 {% for block in self.body %}
-  <div class="row">
-    <div class="col">
 {% autoescape off %}
       {% if block.block_type == 'heading' %}
       {% include "blocks/heading.html" %}
@@ -47,9 +38,18 @@ Delete the line below if you're just getting started and want to remove the welc
       {{ block }}
       {% endif %}
 {% endautoescape %}
+{% endfor %}
     </div>
   </div>
-{% endfor %}
+
+  <!-- Map at the end -->
+  <div class="row card mt-4">
+    <div class="card-header">
+      Nous étions là…
+    </div>
+    <div id="map" class="col card card-body" style="height: 400px;" >
+    </div>
+  </div>
 
 </div>
 {% endblock content %}
@@ -64,5 +64,7 @@ Delete the line below if you're just getting started and want to remove the welc
 
 
   var marker = L.marker([{{ self|get_lat }}, {{ self|get_lon}}]).addTo(map);
+
+  const carousel = new bootstrap.Carousel('#carousel');
 </script>
 {% endblock %}
