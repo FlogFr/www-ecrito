@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} — Ecrito{% endblock %}
+{% block description %}{{ post.excerpt }}{% endblock %}
+{% block path %}{{ post.url }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}{% if post.cover %}<meta property="og:image" content="{{ site_url }}{{ post.url }}{{ post.cover.url(1600) }}">{% else %}{{ super() }}{% endif %}{% endblock %}
+{% block body_class %}page-post{% endblock %}
+{% block content %}
+<div class="split split--post">
+  <main class="split__content">
+    <article class="post" style="--c: {{ post.color }}">
+      <a class="back" href="{{ base }}/#etapes">← Toutes les étapes</a>
+      <header class="post__header">
+        <p class="post__meta">
+          <span class="pill"><span class="pill__dot"></span>{{ post.country }}</span>
+          <time datetime="{{ post.date.isoformat() }}">{{ post.date | frdate }}</time>
+          <span>Étape {{ post.index }} / {{ total }}</span>
+        </p>
+        <h1 class="post__title">{{ post.title }}</h1>
+        {% if post.description %}<p class="post__lead">{{ post.description }}</p>{% endif %}
+      </header>
+
+      {% if post.gallery %}
+      {% set cover = post.gallery[0] %}
+      <a class="post__cover" href="{{ cover.url(1600) }}" data-lightbox>
+        <img src="{{ cover.url(1600) }}" srcset="{{ cover.url(600) }} 600w, {{ cover.url(1600) }} 1600w" sizes="(min-width: 1400px) 760px, (min-width: 960px) 55vw, 100vw" width="{{ cover.width }}" height="{{ cover.height }}" alt="" fetchpriority="high">
+      </a>
+      {% endif %}
+
+      <div class="post__map-mobile" aria-hidden="true"></div>
+
+      <div class="prose">
+        {{ post.html | safe }}
+      </div>
+
+      {% if post.gallery | length > 1 %}
+      <section class="gallery-section">
+        <h2 class="gallery-section__title">Photos <span>{{ post.gallery | length - 1 }}</span></h2>
+        <div class="gallery">
+          {% for photo in post.gallery[1:] %}
+          <a href="{{ photo.url(1600) }}" data-lightbox style="--r: {{ '%.4f' | format(photo.ratio) }}">
+            <img src="{{ photo.url(600) }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="" loading="lazy" decoding="async">
+          </a>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      <nav class="pager" aria-label="Étapes voisines">
+        {% if prev %}
+        <a class="pager__link pager__link--prev" href="{{ base }}{{ prev.url }}">
+          <span class="pager__dir">← Étape précédente</span>
+          <span class="pager__title">{{ prev.title }}</span>
+        </a>
+        {% else %}<span></span>{% endif %}
+        {% if next %}
+        <a class="pager__link pager__link--next" href="{{ base }}{{ next.url }}">
+          <span class="pager__dir">Étape suivante →</span>
+          <span class="pager__title">{{ next.title }}</span>
+        </a>
+        {% endif %}
+      </nav>
+    </article>
+
+    {% include "_footer.html" %}
+  </main>
+
+  <aside class="split__map" aria-label="Carte de l'étape">
+    <div id="map" class="map" data-mode="post" data-current="{{ post.index }}"></div>
+  </aside>
+</div>
+{% endblock %}

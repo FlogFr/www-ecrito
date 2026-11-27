@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block body_class %}page-home{% endblock %}
+{% block content %}
+<div class="split split--home">
+  <main class="split__content">
+    <section class="intro">
+      <p class="kicker">{{ stats.start }} — {{ stats.end }}</p>
+      <h1 class="intro__title">Neuf mois en Asie, sac au dos</h1>
+      <p class="intro__lead">Le carnet de voyage d'Elisa et Florian : {{ stats.stages }} étapes à travers {{ stats.countries }} pays, racontées au fil de la route.</p>
+      <dl class="stats">
+        <div><dt>Étapes</dt><dd>{{ stats.stages }}</dd></div>
+        <div><dt>Pays</dt><dd>{{ stats.countries }}</dd></div>
+        <div><dt>Jours</dt><dd>{{ stats.days }}</dd></div>
+        <div><dt>Km à vol d'oiseau</dt><dd>{{ stats.km | thousands }}</dd></div>
+        <div><dt>Photos</dt><dd>{{ stats.photos }}</dd></div>
+      </dl>
+    </section>
+
+    <section id="etapes" class="timeline" aria-label="Les étapes du voyage">
+      {% for chapter in chapters %}
+      <div class="chapter" style="--c: {{ chapter.color }}">
+        <h2 class="chapter__title">
+          <span class="chapter__dot"></span>{{ chapter.country }}
+          <span class="chapter__meta">{{ chapter.posts | length }} étape{{ 's' if chapter.posts | length > 1 }}</span>
+        </h2>
+        <ol class="stages">
+          {% for post in chapter.posts %}
+          <li>
+            <a class="stage-card" href="{{ base }}{{ post.url }}" data-stage="{{ post.index }}">
+              {% if post.cover %}
+              <img class="stage-card__img" src="{{ base }}{{ post.url }}{{ post.cover.url(600) }}" alt="" loading="lazy" decoding="async" width="{{ post.cover.width }}" height="{{ post.cover.height }}">
+              {% else %}
+              <span class="stage-card__img stage-card__img--empty"></span>
+              {% endif %}
+              <span class="stage-card__body">
+                <span class="stage-card__meta"><span class="stage-card__n">{{ post.index }}</span>{{ post.date | frdate }}</span>
+                <span class="stage-card__title">{{ post.title }}</span>
+                <span class="stage-card__excerpt">{{ post.excerpt }}</span>
+              </span>
+            </a>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+      {% endfor %}
+    </section>
+
+    {% include "_footer.html" %}
+  </main>
+
+  <aside class="split__map" aria-label="Carte du voyage">
+    <div id="map" class="map" data-mode="home"></div>
+    <div class="map-legend" aria-hidden="true">
+      {% for name, color in countries %}<span style="--c: {{ color }}">{{ name }}</span>{% endfor %}
+      <span class="map-legend__flight">vol</span>
+    </div>
+  </aside>
+</div>
+{% endblock %}

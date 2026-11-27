@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Page introuvable — Ecrito{% endblock %}
+{% block path %}/404.html{% endblock %}
+{% block body_class %}page-404{% endblock %}
+{% block content %}
+<main class="notfound">
+  <p class="kicker">Erreur 404</p>
+  <h1>On s'est perdus en route…</h1>
+  <p>Cette page n'existe pas (ou plus).</p>
+  <a class="button" href="{{ base }}/">Retour au carnet de voyage</a>
+</main>
+{% endblock %}

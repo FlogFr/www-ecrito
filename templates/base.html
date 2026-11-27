@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Ecrito — Carnet de voyage{% endblock %}</title>
+  <meta name="description" content="{% block description %}Le carnet de voyage d'Elisa et Florian en Asie, de janvier à octobre 2024.{% endblock %}">
+  <link rel="canonical" href="{{ site_url }}{% block path %}/{% endblock %}">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:site_name" content="Ecrito — Carnet de voyage">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{{ self.description() }}">
+  <meta property="og:url" content="{{ site_url }}{{ self.path() }}">
+  {% block og_image %}<meta property="og:image" content="{{ site_url }}/static/img/apple-touch-icon.png">{% endblock %}
+  <meta name="theme-color" content="#fbf8f3">
+  <link rel="icon" type="image/png" href="{{ base }}/static/img/favicon.png">
+  <link rel="apple-touch-icon" href="{{ base }}/static/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="{{ base }}/static/css/style.css?v={{ version['style.css'] }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <header class="site-header">
+    <a class="brand" href="{{ base }}/">
+      <img class="brand__logo" src="{{ base }}/static/img/logo-96.webp" width="40" height="40" alt="">
+      <span class="brand__name">Ecrito</span>
+      <span class="brand__tag">Carnet de voyage</span>
+    </a>
+    <nav class="site-nav">
+      <a href="{{ base }}/#etapes">Les étapes</a>
+    </nav>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="{{ base }}/static/js/stages.js?v={{ version['stages.js'] }}"></script>
+  <script src="{{ base }}/static/js/site.js?v={{ version['site.js'] }}"></script>
+</body>
+</html>

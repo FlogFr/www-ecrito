@@ -1,2 +1,7 @@
-ecrito/settings/production.py
-media/
+# Site généré
+dist/
+__pycache__/
+
+# Photos originales (~1,5 Go) : à sauvegarder hors de Git.
+# Leurs versions web (media/) sont, elles, versionnées.
+content/posts/*/photos/
